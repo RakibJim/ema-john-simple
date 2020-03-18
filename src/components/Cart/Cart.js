@@ -1,13 +1,15 @@
 import React from 'react';
 import { prettyDOM } from '@testing-library/react';
 
+
 const Cart = (props) => {
     const cart = props.cart;
     //const total = cart.reduce((total, prd) => total + prd.price, 0);
     let total = 0;
     for(let i = 0; i< cart.length; i++){
         const product = cart[i];
-        total = total + product.price;
+        total = total + product.price * product.quantity;
+        debugger;
     }
 
     let shipping = 0;
@@ -38,7 +40,9 @@ const Cart = (props) => {
             <p><small>Tax + VAT: {tax}</small></p>
             <p>Total Price: {grandTotal}</p>
             <br/>
-            <button className="main-button">Review Order</button>
+            {
+                props.children
+            }
         </div>
     );
 };
